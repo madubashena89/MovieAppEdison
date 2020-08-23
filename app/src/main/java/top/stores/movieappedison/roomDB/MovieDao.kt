@@ -1,6 +1,8 @@
 package top.stores.movieappedison.roomDB
 
 import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao
@@ -9,15 +11,9 @@ interface MovieDao {
     @Query("SELECT * FROM movie_table")
     fun getAllMovies() : List<MovieEntity>
 
-//    @Query("SELECT * FROM movie_table WHERE title LIKE :title")
-//    fun findByTitle(title: String): TodoEntity
-//
-//    @Insert
-//    fun insertAll(vararg todo: TodoEntity)
-//
-//    @Delete
-//    fun delete(todo: TodoEntity)
-//
-//    @Update
-//    fun updateTodo(vararg todos: TodoEntity)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun setMovies(movie: MovieEntity)
+
+    @Query("DELETE FROM movie_table")
+    fun deleteAll()
 }
