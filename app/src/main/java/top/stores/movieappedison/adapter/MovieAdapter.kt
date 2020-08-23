@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import top.stores.movieappedison.databinding.ActivityCardBinding
+import top.stores.movieappedison.roomDB.MovieEntity
 
 
 class PromotionAdapter() : RecyclerView.Adapter<MovieViewHolder>() {
@@ -16,7 +17,7 @@ class PromotionAdapter() : RecyclerView.Adapter<MovieViewHolder>() {
         return MovieViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = movieList.size
+    override fun getItemCount(): Int = movieList!!.size
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         TODO("Not yet implemented")

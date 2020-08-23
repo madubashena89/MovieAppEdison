@@ -6,12 +6,13 @@ import top.stores.movieappedison.databinding.ActivityCardBinding
 
 class MovieViewHolder(binding: ActivityCardBinding) :  RecyclerView.ViewHolder(binding.root) {
 
-    var itemCardBinding: ItemCardBinding? = null
+    var itemCardBinding: ActivityCardBinding? = null
 
-    fun WeatherViewHolder(itemCardBinding: ItemCardBinding) {
-        super(itemCardBinding.getRoot())
+    fun WeatherViewHolder(itemCardBinding: ActivityCardBinding) {
+        //super(itemCardBinding.getRoot())
         this.itemCardBinding = itemCardBinding
     }
+
 
 
 
