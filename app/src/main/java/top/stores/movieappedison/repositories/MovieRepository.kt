@@ -23,13 +23,18 @@ class MovieRepository (application: Application) : CoroutineScope{
 
     fun getMovies() = movieDao?.getAllMovies()
 
-    fun setMovies(movies: MovieEntity) {
-        launch  { setMessageBG(movies) }
+    fun getMoviesList() = movieDao?.getAllMovies()
+
+
+    fun setMoviesList(movieslist: List<MovieEntity>) {
+        launch  { movieslist.forEach{
+              setMessageBG(it)
+        } }
     }
 
     private suspend fun setMessageBG(movie: MovieEntity){
         withContext(Dispatchers.IO){
-            movieDao?.setMovies(movie)
+            movieDao?.setMovie(movie)
         }
     }
 }

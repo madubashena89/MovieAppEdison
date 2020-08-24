@@ -11,6 +11,6 @@ class MoviesViewModel (application: Application) : AndroidViewModel(application)
 
     fun getMessages() = repository.getMovies()
 
-    fun setMessage(movie: MovieEntity) { repository.setMovies(movie)}
+//    fun setMessage(movie: MovieEntity) { repository.setMovies(movie)}
 
 }
