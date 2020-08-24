@@ -8,7 +8,7 @@ class MovieViewHolder(binding: ActivityCardBinding) :  RecyclerView.ViewHolder(b
 
     var itemCardBinding: ActivityCardBinding? = null
 
-    fun WeatherViewHolder(itemCardBinding: ActivityCardBinding) {
+    fun MovieViewHolder(itemCardBinding: ActivityCardBinding) {
         //super(itemCardBinding.getRoot())
         this.itemCardBinding = itemCardBinding
     }

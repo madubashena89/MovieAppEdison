@@ -6,10 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import top.stores.movieappedison.databinding.ActivityCardBinding
 import top.stores.movieappedison.roomDB.MovieEntity
 
+class MovieAdapter() : RecyclerView.Adapter<MovieViewHolder>() {
 
-class PromotionAdapter() : RecyclerView.Adapter<MovieViewHolder>() {
-
-    private var movieList : List<MovieEntity>? = null
+    private var movieList : List<MovieEntity>? = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -20,7 +19,10 @@ class PromotionAdapter() : RecyclerView.Adapter<MovieViewHolder>() {
     override fun getItemCount(): Int = movieList!!.size
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.itemCardBinding?.apply {
+            tvMoviesTitleCard.text = movieList?.get(position)?.title.toString()
+
+        }
     }
 
 

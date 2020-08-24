@@ -15,7 +15,7 @@ import java.util.*
 object VolleyNetworkManager {
 
 
-    private val movieRepository = MovieRepository()
+   // private val movieRepository = MovieRepository()
 
     fun downloadData(context: Context){
 
