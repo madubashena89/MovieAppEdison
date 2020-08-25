@@ -1,6 +1,7 @@
 package top.stores.movieappedison.adapter
 
 import android.content.Context
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import top.stores.movieappedison.R
 import top.stores.movieappedison.roomDB.MovieEntity
 
@@ -29,6 +31,13 @@ class MovieAdapter(private val context: Context?, private val movieList: List<Mo
         viewHolder.movieRatingTV.text = movieList?.get(index)?.voteAverage.toString()
         viewHolder.movieRelaseDateTv.text =  movieList?.get(index)?.releaseDate
         viewHolder.overViewHome.text =  movieList?.get(index)?.overview
+
+        val imageUrl = movieList?.get(index)?.backdropPath
+        Picasso.get()
+            .load(Uri.parse(imageUrl)) // internet path
+            .placeholder(R.mipmap.ic_launcher)
+            .error(R.mipmap.ic_launcher_round)
+            .into(viewHolder.movieImage)
 
 //        viewHolder.movieImage.text =  messages?.get(index)?.message
 //        viewHolder.btnSeeMore.setOnClickListener {
