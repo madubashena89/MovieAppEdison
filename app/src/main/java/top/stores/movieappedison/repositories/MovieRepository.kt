@@ -5,6 +5,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import top.stores.movieappedison.networkServices.VolleyNetworkManager
 import top.stores.movieappedison.roomDB.AppDataBase
 import top.stores.movieappedison.roomDB.MovieDao
 import top.stores.movieappedison.roomDB.MovieEntity
@@ -19,6 +20,7 @@ class MovieRepository (application: Application) : CoroutineScope{
     init {
         val db = AppDataBase.getDatabase(application)
         movieDao = db?.movieDao()
+        VolleyNetworkManager.downloadData(application)
     }
 
     fun getMovies() = movieDao?.getAllMovies()
@@ -37,4 +39,10 @@ class MovieRepository (application: Application) : CoroutineScope{
             movieDao?.setMovie(movie)
         }
     }
+
+//    fun downloadMovieData(){
+//        VolleyNetworkManager.downloadData(this)
+//
+//    }
+
 }

@@ -18,23 +18,21 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
     private lateinit var movieAdapter : MovieAdapter
-    private lateinit var viewModel : MoviesViewModel
+    private  var viewModel : MoviesViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-       viewModel = ViewModelProviders.of(this).get(MoviesViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(MoviesViewModel::class.java)
 //        viewModel = ViewModelProvider(this,
 //            ViewModelProvider.AndroidViewModelFactory.getInstance(this)).get<MoviesViewModel>(MoviesViewModel::class.java
 //        )
 
 
+        //VolleyNetworkManager.downloadData(this)
 
-        VolleyNetworkManager.downloadData(this)
         swapFragment(HomeFragment.newInstance())
-
-
 
     }
 

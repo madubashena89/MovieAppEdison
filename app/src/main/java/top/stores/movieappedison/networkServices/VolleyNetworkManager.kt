@@ -1,6 +1,8 @@
 package top.stores.movieappedison.networkServices
 
+import android.app.Application
 import android.content.Context
+import android.graphics.Movie
 import android.util.Log
 import com.android.volley.Request
 import com.android.volley.Response
@@ -17,10 +19,10 @@ object VolleyNetworkManager {
 
    // private val movieRepository = MovieRepository()
 
-    fun downloadData(context: Context){
-
+    fun downloadData(application: Application){
             val url: String = "https://api.themoviedb.org/4/list/1?page=1&api_key=d956f280a7d5133bcf5ca8233b99febf"
             val movieEntities: MutableList<MovieEntity> = ArrayList<MovieEntity>()
+
 
 // get the json object
             val objectRequest = JsonObjectRequest(Request.Method.GET, url, null,
@@ -35,7 +37,8 @@ object VolleyNetworkManager {
                             Log.d("EntityValues", "$entity")
                             movieEntities.add(entity)
                         }
-
+                        var repository : MovieRepository = MovieRepository(application)
+                        repository.setMoviesList(movieEntities)
                     } catch (e: JSONException) {
                         e.printStackTrace()
                     }
@@ -43,7 +46,7 @@ object VolleyNetworkManager {
                 },
                 Response.ErrorListener { error ->
                     error.printStackTrace() })
-             VolleySingleton.getInstance(context).addToRequestQueue(objectRequest)
+             VolleySingleton.getInstance(application.applicationContext).addToRequestQueue(objectRequest)
         }
 
 }

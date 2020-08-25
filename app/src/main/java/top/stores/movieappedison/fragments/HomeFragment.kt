@@ -27,13 +27,11 @@ class HomeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomeBinding.inflate(inflater,container,false)
-        return inflater.inflate(R.layout.fragment_home, container, false)
-
         activity?.let {
             viewModel = ViewModelProviders.of(this).get(MoviesViewModel::class.java)
             binding.homeRecyclerview.adapter = MovieAdapter()
         }
-
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
@@ -47,6 +45,11 @@ class HomeFragment : Fragment() {
 
         }
     }
+
+//        fun onCLick(v : View) {
+//        startActivity(MovieDetailsFragment.newIntent(this))
+//        finish()
+//        }
 
     companion object{
         fun newInstance(): HomeFragment = HomeFragment()

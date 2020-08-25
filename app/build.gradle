@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
+apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 29
 
@@ -38,6 +38,9 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     // LiveData
@@ -65,5 +68,8 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.0'
 
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
 
 }

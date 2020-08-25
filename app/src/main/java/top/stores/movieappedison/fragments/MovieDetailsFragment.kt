@@ -1,5 +1,7 @@
 package top.stores.movieappedison.fragments
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -30,5 +32,7 @@ class MovieDetailsFragment : Fragment() {
 
     companion object{
         fun newInstance(): MovieDetailsFragment = MovieDetailsFragment()
+        fun newIntent(context : Context) = Intent(context , MovieDetailsFragment::class.java)
+
     }
 }

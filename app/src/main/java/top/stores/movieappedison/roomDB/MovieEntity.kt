@@ -4,10 +4,12 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
 import com.google.gson.annotations.SerializedName
+import org.jetbrains.annotations.NotNull
 
 @Entity(tableName = "movie_table", primaryKeys = ["id"])
 class MovieEntity {
 
+    @NotNull
     @SerializedName("id")
     @ColumnInfo(name = "id")
     var movieID : String? = null
