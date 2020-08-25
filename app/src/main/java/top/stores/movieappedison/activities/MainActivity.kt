@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
 
         VolleyNetworkManager.downloadData(this)
-        moveToFragment(HomeFragment.newInstance())
+        swapFragment(HomeFragment.newInstance())
 
 
 

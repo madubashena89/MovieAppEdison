@@ -16,7 +16,9 @@ class MovieAdapter() : RecyclerView.Adapter<MovieViewHolder>() {
         return MovieViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = movieList!!.size
+    override fun getItemCount() : Int{
+        return movieList?.size!!
+    }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.itemCardBinding?.apply {
