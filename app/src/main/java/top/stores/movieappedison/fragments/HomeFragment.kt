@@ -20,7 +20,7 @@ import top.stores.movieappedison.viewModels.MoviesViewModel
 
 class HomeFragment : Fragment() {
     private var layoutManager: RecyclerView.LayoutManager? = null
-    private var adapter: RecyclerView.Adapter<MovieViewHolder>? = null
+    private lateinit var adapter: MovieAdapter
     private lateinit var binding : FragmentHomeBinding
     private lateinit var viewModel : MoviesViewModel
 
@@ -46,7 +46,12 @@ class HomeFragment : Fragment() {
 
         }
     }
-
+//    fun onCLick(v : View) {
+//            val fragmentTrans = supportFragmentManager.beginTransaction()
+//            fragmentTrans.replace(R.id.fragment_container, MovieDetailsFragment)
+//            fragmentTrans.commit()
+//
+//    }
 
     fun setUpAdapterWithList(recyclerView: RecyclerView, viewModel: MoviesViewModel){
         adapter = MovieAdapter(activity?.applicationContext, viewModel.getMovies())
