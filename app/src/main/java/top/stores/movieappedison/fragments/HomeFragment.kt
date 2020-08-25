@@ -29,21 +29,32 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater,container,false)
         activity?.let {
             viewModel = ViewModelProviders.of(this).get(MoviesViewModel::class.java)
-            binding.homeRecyclerview.adapter = MovieAdapter()
         }
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        setUpAdapterWithList(binding.homeRecyclerview,viewModel)
+        return binding.root
+
     }
 
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
-        home_recyclerview.apply {
+        binding.homeRecyclerview.adapter.apply {
             // set a LinearLayoutManager to handle Android
             // RecyclerView behavior
             layoutManager = LinearLayoutManager(activity)
             // set the custom adapter to the RecyclerView
-            adapter = MovieAdapter()
+
 
         }
+    }
+
+
+    fun setUpAdapterWithList(recyclerView: RecyclerView, viewModel: MoviesViewModel){
+        adapter = MovieAdapter(activity?.applicationContext, viewModel.getMovies())
+        val layoutManager = LinearLayoutManager(activity)
+        layoutManager.stackFromEnd =true
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = adapter
+
     }
 
 //        fun onCLick(v : View) {

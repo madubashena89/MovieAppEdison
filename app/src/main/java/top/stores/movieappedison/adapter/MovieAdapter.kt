@@ -1,48 +1,55 @@
 package top.stores.movieappedison.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
-import top.stores.movieappedison.databinding.ActivityCardBinding
+import top.stores.movieappedison.R
 import top.stores.movieappedison.roomDB.MovieEntity
 
-class MovieAdapter() : RecyclerView.Adapter<MovieViewHolder>() {
+class MovieAdapter(private val context: Context?, private val movieList: List<MovieEntity>?) : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
 
-    private var movieList : List<MovieEntity>? = listOf()
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ActivityCardBinding.inflate(layoutInflater)
-        return MovieViewHolder(binding)
+    override fun onCreateViewHolder(viewGroup: ViewGroup, index: Int): ViewHolder {
+        val rootView = LayoutInflater.from(viewGroup.context).inflate(R.layout.activity_card, viewGroup, false)
+        return ViewHolder(rootView)
     }
 
-    override fun getItemCount() : Int{
+    override fun getItemCount(): Int {
         return movieList?.size!!
     }
 
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.itemCardBinding?.apply {
-            tvMoviesTitleCard.text = movieList?.get(position)?.title.toString()
-        }
+    override fun onBindViewHolder(viewHolder: ViewHolder, index: Int) {
+        viewHolder.movieTitleTv.text = movieList?.get(index)?.title
+        viewHolder.movieRatingTV.text = movieList?.get(index)?.voteAverage.toString()
+        viewHolder.movieRelaseDateTv.text =  movieList?.get(index)?.releaseDate
+        viewHolder.overViewHome.text =  movieList?.get(index)?.overview
 
-
-        //Picasso
-//        Picasso.get()
-//            .load(Uri.parse(toyList.get(position).getImageUri()+".png")) // internet path
-//            .placeholder(R.mipmap.app_launcher_main_foreground)  // preload
-//            .error(R.mipmap.app_launcher_main_foreground)        // load error
-//            .into(holder.imgToy);  // 要顯示圖的View
+//        viewHolder.movieImage.text =  messages?.get(index)?.message
+//        viewHolder.btnSeeMore.setOnClickListener {
 //
-//        holder.itemView.setOnClickListener(new View.OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                //Toast.makeText(context, "Item " + position + " is clicked.", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+//        }
+
+    }
+
+
+    inner class ViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView)
+    {
+        var movieTitleTv: TextView = itemView.findViewById(R.id.tv_movies_title_card) as TextView
+        var movieRatingTV: TextView = itemView.findViewById(R.id.tv_movies_rating) as TextView
+        var movieRelaseDateTv: TextView = itemView.findViewById(R.id.tv_release_date) as TextView
+        var overViewHome: TextView = itemView.findViewById(R.id.over_view_home) as TextView
+
+        var movieImage: ImageView = itemView.findViewById(R.id.movies_card_image_view) as ImageView
+        var btnSeeMore: Button = itemView.findViewById(R.id.btn_see_more) as Button
+
+
+
     }
 
 
