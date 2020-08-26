@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="21dp"
-            app:layout_constraintStart_toStartOf="@+id/imageVIewDetails"
+            app:layout_constraintStart_toStartOf="@+id/tv_movie_title_details"
             app:layout_constraintTop_toBottomOf="@+id/imageVIewDetails"
             tools:text="Release date" />
 
@@ -52,27 +52,41 @@
             app:layout_constraintStart_toStartOf="@+id/tv_release_date_details"
             app:layout_constraintTop_toBottomOf="@+id/tv_release_date_details" />
 
-        <TextView
-            android:id="@+id/tv_overview_details"
-            android:layout_width="316dp"
-            android:layout_height="192dp"
-            android:layout_marginBottom="152dp"
-            android:lines="5"
-            android:maxLines="5"
-            android:text="Over view"
-            app:layout_constraintBottom_toBottomOf="parent"
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="329dp"
+            android:layout_height="204dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_ranking_details">
+
+            <TextView
+                android:id="@+id/tv_overview_details"
+                android:layout_width="316dp"
+                android:layout_height="192dp"
+                android:layout_marginTop="24dp"
+                android:lines="20"
+                android:maxLines="20"
+                android:scrollbarAlwaysDrawHorizontalTrack="true"
+                android:text="Over view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.494"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_ranking_details" />
+        </androidx.core.widget.NestedScrollView>
 
         <Button
             android:id="@+id/btn_back_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="44dp"
+            android:background="@color/colorAccent"
             android:text="Back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_overview_details"
-            app:layout_constraintVertical_bias="0.365" />
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
