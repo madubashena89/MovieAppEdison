@@ -16,7 +16,7 @@ import java.util.*
 
 object VolleyNetworkManager {
 
-
+    const val IMAGE_CONSTANT = "https://image.tmdb.org/t/p/w500/"
    // private val movieRepository = MovieRepository()
 
     fun downloadData(application: Application){

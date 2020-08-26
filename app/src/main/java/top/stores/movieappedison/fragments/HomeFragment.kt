@@ -54,7 +54,7 @@ class HomeFragment : Fragment() {
 //    }
 
     fun setUpAdapterWithList(recyclerView: RecyclerView, viewModel: MoviesViewModel){
-        adapter = MovieAdapter(activity?.applicationContext, viewModel.getMovies())
+        adapter = MovieAdapter(activity, viewModel.getMovies())
         val layoutManager = LinearLayoutManager(activity)
         layoutManager.stackFromEnd =true
         recyclerView.layoutManager = layoutManager

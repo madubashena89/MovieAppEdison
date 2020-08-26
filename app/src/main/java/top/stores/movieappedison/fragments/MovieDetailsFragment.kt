@@ -8,12 +8,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import top.stores.movieappedison.R
 import top.stores.movieappedison.adapter.MovieAdapter
+import top.stores.movieappedison.databinding.FragmentHomeBinding
 import top.stores.movieappedison.databinding.FragmentMovieDetailsBinding
+import top.stores.movieappedison.networkServices.VolleyNetworkManager
 import top.stores.movieappedison.viewModels.MoviesViewModel
 
 class MovieDetailsFragment : Fragment() {
@@ -24,33 +27,38 @@ class MovieDetailsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentMovieDetailsBinding.inflate(inflater,container,false)
-        return inflater.inflate(R.layout.fragment_home, container, false)
 
+        activity?.let {
+            viewModel = ViewModelProviders.of(this).get(MoviesViewModel::class.java)
+        }
+        val bundle = arguments
+        setUpScreen(bundle)
 
+        return binding.root
 
     }
 
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
-
+        setUpScreenWithIntent()
     }
 
 
-    fun setUpScreen( viewModel: MoviesViewModel){
-        val movieList = viewModel.getMovies()
-        movieList?.forEach {
-            val imageUrl = it.posterPath
+    fun setUpScreen( bundle: Bundle?){
+        //val movieList = viewModel.getMovies()
+        val bundle = arguments
            binding.apply {
-               tvMovieTitleDetails.text = it.title
-               tvRankingDetails.text = it.voteAverage.toString()
-               tvReleaseDateDetails.text = it.releaseDate
-               tvOverviewDetails.text = it.overview
+               tvMovieTitleDetails.text = bundle?.getString("TITLE")
+               tvRankingDetails.text =  bundle?.getString("RATING")
+               tvReleaseDateDetails.text =  bundle?.getString("RELEASEDATE")
+               tvOverviewDetails.text =  bundle?.getString("OVERVIEW")
                btnBackDetails.setOnClickListener {
 
-               }
+
            }
+               val posterURL = VolleyNetworkManager.IMAGE_CONSTANT + bundle?.getString("POSTERURL")
             Picasso.get()
-                .load(Uri.parse(imageUrl)) // internet path
+                .load(Uri.parse(posterURL)) // internet path
                 .placeholder(R.mipmap.ic_launcher)
                 .error(R.mipmap.ic_launcher_round)
                 .into(binding.imageVIewDetails)
@@ -58,6 +66,22 @@ class MovieDetailsFragment : Fragment() {
 
     }
 
+
+    fun setUpScreenWithIntent(){
+        var moviewList = viewModel.getMovies()
+        binding.apply {
+            tvMovieTitleDetails.text = Intent().extras?.getString("TITLE")
+            tvRankingDetails.text = Intent().extras?.getString("RATING")
+            tvReleaseDateDetails.text = Intent().extras?.getString("RELEASEDATE")
+            tvOverviewDetails.text = Intent().extras?.getString("OVERVIEW")
+            btnBackDetails.setOnClickListener {
+
+            }
+        }
+
+
+
+    }
 
     companion object{
         fun newInstance(): MovieDetailsFragment = MovieDetailsFragment()
