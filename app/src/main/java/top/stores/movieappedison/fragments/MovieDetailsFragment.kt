@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -40,7 +41,7 @@ class MovieDetailsFragment : Fragment() {
 
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
-        setUpScreenWithIntent()
+       // setUpScreenWithIntent()
     }
 
 
@@ -53,7 +54,7 @@ class MovieDetailsFragment : Fragment() {
                tvReleaseDateDetails.text =  bundle?.getString("RELEASEDATE")
                tvOverviewDetails.text =  bundle?.getString("OVERVIEW")
                btnBackDetails.setOnClickListener {
-
+                   moveToFragment(HomeFragment.newInstance())
 
            }
                val posterURL = VolleyNetworkManager.IMAGE_CONSTANT + bundle?.getString("POSTERURL")
@@ -78,9 +79,13 @@ class MovieDetailsFragment : Fragment() {
 
             }
         }
+    }
 
 
-
+    private fun moveToFragment(fragment : Fragment){
+        val fragmentTrans = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
+        fragmentTrans.replace(R.id.fragment_container, fragment)
+        fragmentTrans.commit()
     }
 
     companion object{
