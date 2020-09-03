@@ -38,7 +38,7 @@ object VolleyNetworkManager {
                             movieEntities.add(entity)
                         }
                         var repository : MovieRepository = MovieRepository(application)
-                        repository.setMoviesList(movieEntities)
+                        repository.setMoviesList(movieEntities) // insert into the room database
                     } catch (e: JSONException) {
                         e.printStackTrace()
                     }

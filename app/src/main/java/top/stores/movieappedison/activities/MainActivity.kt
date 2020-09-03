@@ -1,16 +1,16 @@
 package top.stores.movieappedison.activities
 
 import android.os.Bundle
+import android.provider.Settings.Secure
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import top.stores.movieappedison.R
 import top.stores.movieappedison.adapter.MovieAdapter
 import top.stores.movieappedison.databinding.ActivityMainBinding
 import top.stores.movieappedison.fragments.HomeFragment
-import top.stores.movieappedison.networkServices.VolleyNetworkManager
 import top.stores.movieappedison.viewModels.MoviesViewModel
 
 
@@ -28,8 +28,11 @@ class MainActivity : AppCompatActivity() {
 //        viewModel = ViewModelProvider(this,
 //            ViewModelProvider.AndroidViewModelFactory.getInstance(this)).get<MoviesViewModel>(MoviesViewModel::class.java
 //        )
-
-
+        val android_id = Secure.getString(
+            this.contentResolver,
+            Secure.ANDROID_ID
+        )
+        Log.d("AndroidID", "$android_id")
         //VolleyNetworkManager.downloadData(this)
 
         moveToFragment(HomeFragment.newInstance())
