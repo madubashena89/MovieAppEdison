@@ -26,7 +26,7 @@ object VolleyNetworkManager {
 
 // get the json object
             val objectRequest = JsonObjectRequest(Request.Method.GET, url, null,
-                Response.Listener { response ->
+                { response ->
                     try {
                         val movieList = response.getJSONArray("results")
                         for (i in 0 until movieList.length()) {
@@ -44,7 +44,7 @@ object VolleyNetworkManager {
                     }
 
                 },
-                Response.ErrorListener { error ->
+                { error ->
                     error.printStackTrace() })
              VolleySingleton.getInstance(application.applicationContext).addToRequestQueue(objectRequest)
         }

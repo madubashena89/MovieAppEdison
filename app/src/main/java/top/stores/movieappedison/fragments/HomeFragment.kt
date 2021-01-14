@@ -59,7 +59,6 @@ class HomeFragment : Fragment() {
         layoutManager.stackFromEnd =true
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
-
     }
 
 //        fun onCLick(v : View) {

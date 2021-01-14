@@ -28,11 +28,11 @@ class MainActivity : AppCompatActivity() {
 //        viewModel = ViewModelProvider(this,
 //            ViewModelProvider.AndroidViewModelFactory.getInstance(this)).get<MoviesViewModel>(MoviesViewModel::class.java
 //        )
-        val android_id = Secure.getString(
+/*        val android_id = Secure.getString(
             this.contentResolver,
             Secure.ANDROID_ID
         )
-        Log.d("AndroidID", "$android_id")
+        Log.d("AndroidID", "$android_id")*/
         //VolleyNetworkManager.downloadData(this)
 
         moveToFragment(HomeFragment.newInstance())
